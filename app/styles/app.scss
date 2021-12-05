@@ -1,0 +1,15 @@
+$dark: rgb(26, 26, 26);
+$light: rgb(238, 238, 238);
+$primary: rgb(255, 52, 86);
+body {
+  background-color: $dark;
+  color: $light;
+}
+.card {
+  background-color: $primary;
+}
+
+img {
+  width: 120px;
+  height: 120px;
+}

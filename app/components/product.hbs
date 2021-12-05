@@ -1,0 +1,6 @@
+<h2>{{ this.number }}</h2>
+<button {{on "click" this.addNumber}}>add</button>
+<LinkTo @route="item" @model="2">
+  <Product::Image />
+  <Product::Details />
+</LinkTo>
