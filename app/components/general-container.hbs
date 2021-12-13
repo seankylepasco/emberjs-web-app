@@ -1,7 +1,14 @@
-<LinkTo @route="cart">
-  <h1>Shopping Cart Page</h1>
-</LinkTo>
-<main>
-  {{yield}}
-</main>
-<br />
+<div class='container'>
+  <LinkTo @route='cart'>
+    <button class='cart' type='button'>
+      <i class='fas fa-shopping-cart'></i>
+      {{#if this.shoppingCart.itemList.length}}
+        <span>{{this.itemCount}}</span>
+      {{/if}}
+    </button>
+  </LinkTo>
+  <main>
+    {{yield}}
+  </main>
+  <br />
+</div>

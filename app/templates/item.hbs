@@ -1,3 +1,31 @@
 <GeneralContainer>
-  this is item number {{this.model}}
+  <div class='box'>
+    <div class='card flex-column'>
+      <div class='flex-row'>
+        <div>
+          <Product::Image
+            @src={{this.productImage}}
+            @toggleZoom={{this.toggleZoom}}
+          />
+        </div>
+        <Product::Details
+          @isDetails={{true}}
+          @name={{this.model.name}}
+          @price={{this.model.price}}
+          @colors={{this.model.colors}}
+          @color={{this.color}}
+          @onChangeColor={{this.onChangeColor}}
+        />
+      </div>
+      <div class='card-container'>
+        <h4>Features</h4>
+        <ul>
+          {{#each this.model.features as |feature|}}
+            <li>{{feature}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </GeneralContainer>

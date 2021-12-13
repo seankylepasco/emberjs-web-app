@@ -1,10 +1,12 @@
-/* eslint-disable getter-return */
 import Controller from '@ember/controller';
-
+import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 export default class CartController extends Controller {
+  @service('shopping-cart') cart;
+
   get subtotal() {
-    return this.model.reduce((acc, item) => {
-      return acc + item.price;
+    return this.cart.itemList.reduce((acc, item) => {
+      return acc + item.price * item.count;
     }, 0);
   }
   get tax() {
@@ -12,5 +14,15 @@ export default class CartController extends Controller {
   }
   get total() {
     return this.tax + this.subtotal;
+  }
+
+  @action
+  updateItemCount(item, event) {
+    const count = event.target.value;
+    if (count >= 0) {
+      item.count = count;
+    } else {
+      item.count = 0;
+    }
   }
 }

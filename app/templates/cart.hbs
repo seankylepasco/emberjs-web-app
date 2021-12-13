@@ -1,10 +1,43 @@
-{{page-title "Cart"}}
-<h1>Shopping Cart</h1>
-<span>Subtotal: </span><span>{{ this.subtotal}}</span>
-<br />
-<span>Tax: </span><span>{{ this.tax }}</span>
-<br />
-<span>Total: </span><span>{{ this.total }}</span>
-<br />
-<button type="button">Checkout</button>
-{{outlet}}
+{{page-title 'Cart'}}
+<div class='box'>
+  <div class='flex-column div-container'>
+    <LinkTo @route='index' style='text-decoration: none; color: black'>
+      <i class='fas fa-home'></i>
+      Home
+    </LinkTo>
+    <h1>Shopping Cart</h1>
+    <div class='flex-row'>
+      <div class='flex-column'>
+        {{#each this.cart.itemList as |item|}}
+          <div class='card'>
+            <div class='flex-row'>
+              <div class='card-img-container'>
+                <img src={{item.image}} alt='' />
+              </div>
+              <div class='flex-column'>
+                <h2>{{item.name}}</h2>
+                <p>price: {{currency item.price}}</p>
+                <input
+                  type='number'
+                  value={{item.count}}
+                  {{on 'input' (fn this.updateItemCount item)}}
+                />
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+      <div class='flex-column div-container'>
+        <div class='flex-row'>
+          <h3>Subtotal: {{currency this.subtotal sign='$'}}</h3>
+          &nbsp; &nbsp;
+          <h3>Tax: {{currency this.tax}}</h3>
+          <br />
+        </div>
+        <h3>Total: </h3><span>{{currency this.total}}</span>
+        <br />
+        <button class='button-17'>Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>

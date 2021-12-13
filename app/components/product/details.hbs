@@ -1,3 +1,19 @@
-<div>
-  <span>price: 99</span>
-</div>
+<section class='flex-column details'>
+  <h3>{{@name}}</h3>
+  <div class={{unless @isDetails 'h4'}}>
+    <del>{{currency @price.original}}</del>
+    <b><span>{{currency @price.current}}</span></b>
+    <h5>{{@color}}</h5>
+  </div>
+  {{#if @isDetails}}
+    <div>
+      {{#each @colors as |colorInfo|}}
+        <span
+          class='product-color {{concat "color-" colorInfo.color}}'
+          {{on 'click' (fn @onChangeColor colorInfo.color)}}
+        ></span>
+      {{/each}}
+    </div>
+    <button class="button-17" {{on "click" this.addToCart}}>Add to cart</button>
+  {{/if}}
+</section>
